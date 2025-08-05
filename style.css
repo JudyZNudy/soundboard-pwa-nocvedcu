@@ -43,13 +43,6 @@ h1, h2 {
   }
 }
 
-/* Extra malé obrazovky: 1 sloupec */
-@media (max-width: 450px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 #color-buttons button:not(.back-button) {
   position: relative;
   width: 100%;
