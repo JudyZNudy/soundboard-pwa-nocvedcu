@@ -1,3 +1,10 @@
+const colorLabels = {
+  en: ["purple", "red", "gray", "orange", "green", "yellow", "blue"],
+  es: ["púrpura", "rojo", "gris", "naranja", "verde", "amarillo", "azul"],
+  fr: ["violet", "rouge", "gris", "orange", "vert", "jaune", "bleu"],
+  jp: ["murasaki", "aka", "haiiro", "orenji", "midori", "kiiro", "ao"]
+};
+
 const colors = [
   { name: "purple", color: "#800080" },
   { name: "red", color: "#ff0000" },
@@ -28,49 +35,36 @@ function openLanguage(lang) {
   container.innerHTML = "";
   allButtons = [];
 
-  colors.forEach(color => {
+  colors.forEach((color, index) => {
     const btn = document.createElement("button");
     btn.style.backgroundColor = color.color;
-    btn.style.position = "relative";
-    btn.style.overflow = "hidden";
+
+    const text = document.createElement("span");
+    text.className = "label";
+    text.textContent = colorLabels[lang][index];
+    btn.appendChild(text);
 
     btn.addEventListener("click", function () {
       if (btn.disabled) return;
-
-      // Disable all buttons at once
       allButtons.forEach(b => b.disabled = true);
 
       const audio = new Audio(`sounds/${lang}_${color.name}.mp3`);
-      audio.play().catch(() => {
-        console.log(`Placeholder: ${lang}_${color.name}`);
-      });
-
-      // 💧 Jemné zprůhlednění s barvou pozadí zachovanou
+      audio.play().catch(() => console.log(`Placeholder: ${lang}_${color.name}`));
       btn.style.opacity = "0.6";
 
-      // 📢 Text "Přehrává se" bez transparence
+      btn.removeChild(text);
+
       const label = document.createElement("span");
       label.textContent = "Přehrává se";
-      label.style.position = "absolute";
-      label.style.top = "50%";
-      label.style.left = "50%";
-      label.style.transform = "translate(-50%, -50%)";
-      label.style.fontSize = "16px";
-      label.style.fontWeight = "bold";
-      label.style.color = "#ffffff";
-      label.style.backgroundColor = "#000000";
-      label.style.padding = "6px 12px";
-      label.style.borderRadius = "6px";
-      label.style.zIndex = "2";
-      label.style.pointerEvents = "none";
+      label.className = "label";
       btn.appendChild(label);
 
-      // 🕒 Po skončení + 0.5s reset všeho
       audio.addEventListener("ended", () => {
         setTimeout(() => {
           allButtons.forEach(b => b.disabled = false);
           btn.style.opacity = "1";
           btn.removeChild(label);
+          btn.appendChild(text);
         }, 500);
       });
     });
@@ -78,6 +72,13 @@ function openLanguage(lang) {
     container.appendChild(btn);
     allButtons.push(btn);
   });
+
+  // Přidání tlačítka Zpět
+  const backBtn = document.createElement("button");
+  backBtn.textContent = "Zpět";
+  backBtn.className = "back-button";
+  backBtn.addEventListener("click", goBack);
+  container.appendChild(backBtn);
 }
 
 function goBack() {

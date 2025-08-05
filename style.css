@@ -1,28 +1,107 @@
 body {
   font-family: sans-serif;
-  text-align: center;
   margin: 0;
+  text-align: center;
   background-color: #f7f7f7;
 }
 
+h1, h2 {
+  margin: 20px;
+  font-size: clamp(24px, 4vw, 36px); /* přizpůsobivé nadpisy */
+}
+
 .lang-button {
-  font-size: 32px;
+  display: inline-block;
   margin: 20px;
   cursor: pointer;
 }
 
 .lang-button span {
   display: block;
-  font-size: 18px;
-  margin-top: 10px;
+  font-size: clamp(16px, 2vw, 20px);
+  margin-top: 8px;
 }
 
-#color-buttons button {
-  width: 80%;
-  height: 50px;
-  margin: 8px auto;
+.grid {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  transition: grid-template-columns 0.3s ease;
+}
+
+/* Výchozí: 2 sloupce */
+.grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Na šířku: 4 sloupce */
+@media (orientation: landscape) and (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Extra malé obrazovky: 1 sloupec */
+@media (max-width: 450px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+#color-buttons button:not(.back-button) {
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   border: none;
+  border-radius: 10px;
+  font-size: clamp(16px, 2vw, 24px); /* přizpůsobené písmo */
+  color: white;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  min-height: 100px;
+  max-height: 300px;
+  max-width: 100%;
+}
+
+/* Rozšíření vodorovně i vertikálně na větších zařízeních */
+@media (orientation: landscape) and (min-width: 800px) {
+  #color-buttons button:not(.back-button) {
+    font-size: clamp(18px, 2.5vw, 28px);
+    min-height: 140px;
+  }
+}
+
+#color-buttons button .label {
+  position: absolute;
+  font-size: clamp(14px, 1.5vw, 18px);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Zpět tlačítko */
+.back-button {
+  background-color: transparent;
+  border: 3px solid black;
+  color: black;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: bold;
+  position: relative;
   border-radius: 8px;
-  display: block;
-  font-size: 16px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  min-height: 60px;
+}
+
+.back-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: scale(1.05);
 }
