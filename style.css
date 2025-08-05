@@ -26,18 +26,3 @@ body {
   display: block;
   font-size: 16px;
 }
-
-#surprise-btn {
-  padding: 12px 24px;
-  font-size: 18px;
-  background-color: #2563eb; /* výchozí modrá */
-  border: none;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.playing {
-  background-color: #000000 !important; /* černá */
-}
