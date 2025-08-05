@@ -48,6 +48,15 @@ function goBack() {
 const button = document.getElementById("surprise-btn");
 
 button.addEventListener("click", () => {
+  // Animace tlačítka
   button.classList.add("clicked-flash");
-  setTimeout(() => button.classList.remove("clicked-flash"), 300);
+  setTimeout(() => button.classList.remove("clicked-flash"), 500);
+
+  // Textový feedback
+  const feedback = document.createElement("div");
+  feedback.className = "play-feedback";
+  feedback.innerText = "🎧 Zvuk se přehrává";
+  document.body.appendChild(feedback);
+
+  setTimeout(() => feedback.remove(), 2000);
 });
