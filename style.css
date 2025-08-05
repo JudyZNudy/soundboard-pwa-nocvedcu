@@ -27,12 +27,50 @@ body {
   font-size: 16px;
 }
 
+#surprise-btn {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+
+#surprise-btn:active {
+  transform: scale(0.92);
+}
+
 .clicked-flash {
-  animation: flash 0.3s ease-in-out;
+  animation: flash 0.5s ease-in-out;
 }
 
 @keyframes flash {
-  0% { box-shadow: 0 0 0px white; }
-  50% { box-shadow: 0 0 12px white; }
-  100% { box-shadow: 0 0 0px white; }
+  0% { box-shadow: 0 0 0px #ffffff; }
+  40% { box-shadow: 0 0 25px #ffffff; }
+  100% { box-shadow: 0 0 0px #ffffff; }
+}
+
+.play-feedback {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: sans-serif;
+  z-index: 9999;
+  opacity: 0;
+  animation: fadeInOut 2s ease;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
 }
