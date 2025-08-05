@@ -1,0 +1,10 @@
+{
+  "name": "soundboard-pwa-nocvedcu",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
