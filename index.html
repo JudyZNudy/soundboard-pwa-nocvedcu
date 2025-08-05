@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Soundboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="main-menu">
+    <h1>Vyber jazyk</h1>
+    <div class="lang-button" onclick="openLanguage('en')">🇬🇧<span>Angličtina</span></div>
+    <div class="lang-button" onclick="openLanguage('es')">🇪🇸<span>Španělština</span></div>
+    <div class="lang-button" onclick="openLanguage('fr')">🇫🇷<span>Francouzština</span></div>
+    <div class="lang-button" onclick="openLanguage('jp')">🇯🇵<span>Japonština</span></div>
+  </div>
+
+  <div id="color-screen" style="display:none;">
+    <h2 id="language-name"></h2>
+    <div id="color-buttons"></div>
+    <button onclick="goBack()">Zpět</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
