@@ -44,14 +44,3 @@ function goBack() {
   document.getElementById("color-screen").style.display = "none";
   document.getElementById("main-menu").style.display = "block";
 }
-
-const button = document.getElementById("surprise-btn");
-
-button.addEventListener("click", () => {
-  button.classList.add("playing");
-
-  // Simulace přehrávání zvuku (trvá cca 2 sekundy)
-  setTimeout(() => {
-    button.classList.remove("playing");
-  }, 2000);
-});
