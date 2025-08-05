@@ -44,3 +44,10 @@ function goBack() {
   document.getElementById("color-screen").style.display = "none";
   document.getElementById("main-menu").style.display = "block";
 }
+
+const button = document.getElementById("surprise-btn");
+
+button.addEventListener("click", () => {
+  button.classList.add("clicked-flash");
+  setTimeout(() => button.classList.remove("clicked-flash"), 300);
+});
