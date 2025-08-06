@@ -1,6 +1,6 @@
 const colorLabels = {
   en: ["purple", "red", "gray", "orange", "green", "yellow", "blue"],
-  es: ["púrpura", "rojo", "gris", "naranja", "verde", "amarillo", "azul"],
+  es: ["morado", "rojo", "gris", "naranja", "verde", "amarillo", "azul"],
   fr: ["violet", "rouge", "gris", "orange", "vert", "jaune", "bleu"],
   jp: ["murasaki", "aka", "haiiro", "orenji", "midori", "kiiro", "ao"]
 };
