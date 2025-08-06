@@ -3,41 +3,56 @@ body {
   margin: 0;
   text-align: center;
   background-color: #f7f7f7;
+  overflow-x: hidden;
 }
 
 h1, h2 {
   margin: 20px;
-  font-size: clamp(24px, 4vw, 36px); /* přizpůsobivé nadpisy */
+  font-size: clamp(24px, 6vw, 36px); /* Responzivní velikost nadpisu */
+  position: relative;
+  z-index: 1;
 }
 
 .lang-button {
   display: inline-block;
-  margin: 20px;
+  margin: 10px;
   cursor: pointer;
 }
 
 .lang-button span {
   display: block;
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: clamp(16px, 4vw, 20px); /* Responzivní velikost textu */
   margin-top: 8px;
 }
 
 .grid {
   display: grid;
-  gap: 20px;
+  gap: 15px;
   padding: 20px;
   max-width: 1000px;
   margin: 0 auto;
   transition: grid-template-columns 0.3s ease;
+  position: relative;
+  z-index: 1;
+  grid-template-columns: repeat(2, 1fr); /* Výchozí pro mobilní zařízení */
 }
 
-/* Výchozí: 2 sloupce */
-.grid {
-  grid-template-columns: repeat(2, 1fr);
+/* Při větší obrazovce (tablety, menší desktopy) */
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr); /* Zajistí 4 tlačítka na řádek */
+  }
 }
 
-/* Na šířku: 4 sloupce */
-@media (orientation: landscape) and (min-width: 600px) {
+/* Při ještě větší obrazovce (desktopy a větší zařízení) */
+@media (min-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Při ještě větší obrazovce (velké desktopy a vyšší) */
+@media (min-width: 1200px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -50,24 +65,16 @@ h1, h2 {
   aspect-ratio: 1 / 1;
   border: none;
   border-radius: 10px;
-  font-size: clamp(16px, 2vw, 24px); /* přizpůsobené písmo */
+  font-size: clamp(16px, 4vw, 24px);
   color: white;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, opacity 0.3s ease;
+  transition: opacity 0.3s ease;
   min-height: 100px;
   max-height: 300px;
   max-width: 100%;
-}
-
-/* Rozšíření vodorovně i vertikálně na větších zařízeních */
-@media (orientation: landscape) and (min-width: 800px) {
-  #color-buttons button:not(.back-button) {
-    font-size: clamp(18px, 2.5vw, 28px);
-    min-height: 140px;
-  }
 }
 
 #color-buttons button .label {
@@ -79,22 +86,49 @@ h1, h2 {
   text-align: center;
 }
 
-/* Zpět tlačítko */
 .back-button {
-  background-color: transparent;
-  border: 3px solid black;
-  color: black;
-  font-size: clamp(16px, 2vw, 20px);
-  font-weight: bold;
   position: relative;
-  border-radius: 8px;
-  padding: 12px 16px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border: 3px solid black;
+  border-radius: 10px;
+  font-size: clamp(16px, 4vw, 24px); /* Stejně veliký text jako ostatní tlačítka */
+  font-weight: bold;
+  color: black;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  min-height: 60px;
+  transition: opacity 0.3s ease;
+  min-height: 100px;
+  max-height: 300px;
+  max-width: 100%;
+  z-index: 1;
 }
 
-.back-button:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  transform: scale(1.05);
+/* Responzivní pozadí vlajky */
+#flag-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  opacity: 0.3; /* Opravené pozadí pro lepší čitelnost textu */
+}
+
+/* Bílý průhledný překryv */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.6;
+  z-index: 0;
 }
